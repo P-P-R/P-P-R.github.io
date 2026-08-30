@@ -312,13 +312,12 @@ footer {
   color: var(--text-muted);
 }
 
-/* --- Den flygande roboten under headern --- */
 #scroll-runner {
   position: fixed;
-  top: 75px; /* Flyttar ner den under din header/sidmeny */
+  top: 130px; /* Sätter den strax under din mobilmeny */
   left: 0;
   font-size: 1.5rem;
-  z-index: 999;
+  z-index: 10000; /* Ser till att den ligger över allt annat */
   pointer-events: none;
   transition: transform 0.15s ease-out;
 }
