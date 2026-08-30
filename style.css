@@ -314,11 +314,12 @@ footer {
 
 /* --- Den springande skroll-gubben --- */
 #scroll-runner {
-  position: fixed;
-  top: 10px; /* Håller honom nära toppen */
-  left: 0;
-  font-size: 1.8rem;
-  z-index: 9999; /* Ser till att han alltid är överst */
-  pointer-events: none; /* Så att han inte är i vägen om man försöker klicka på något */
-  transition: transform 0.2s; /* Ger en mjuk vändning när han byter håll */
+  top: 100px;
+  left: 10px;
+}
+
+/* Lite extra plats så roboten inte ligger ovanpå Profile */
+main {
+  margin-left: 0;
+  padding: 5rem 5% 2rem;
 }
