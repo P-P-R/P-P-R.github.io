@@ -312,13 +312,13 @@ footer {
   color: var(--text-muted);
 }
 
-/* --- Den springande roboten med studs-animation --- */
+/* --- Den flygande roboten under headern --- */
 #scroll-runner {
   position: fixed;
-  top: 5px; /* Justera höjden så den ligger perfekt i toppen */
+  top: 75px; /* Flyttar ner den under din header/sidmeny */
   left: 0;
   font-size: 1.5rem;
-  z-index: 9999;
+  z-index: 999;
   pointer-events: none;
   transition: transform 0.15s ease-out;
 }
