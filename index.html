@@ -230,22 +230,25 @@
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const docHeight =
           document.documentElement.scrollHeight - window.innerHeight;
-
-        // Skydda mot division med noll om sidan är för kort
         const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
 
-        // Flytta roboten längs med toppen
-        runner.style.left = `calc(${scrollPercent * 95}% )`;
+        // Känner av om skärmen är stor (dator) eller liten (mobil)
+        const isMobile = window.innerWidth <= 900;
 
-        // Bestäm riktning (vänster/höger)
-        let direction = 1;
-        if (scrollTop < lastScrollTop) {
-          direction = -1; // Springer bakåt/vänster när man skrollar upp
+        // Anpassar springbanan så den inte krockar med sidmenyn på datorn
+        if (isMobile) {
+          runner.style.left = `calc(${scrollPercent * 90}%)`;
+        } else {
+          runner.style.left = `calc(320px + ${scrollPercent * 70}%)`;
         }
 
-        // Sätt CSS-variabel för riktningen i animationen
-        runner.style.setProperty("--dir", direction);
+        // Vänder roboten
+        let direction = 1;
+        if (scrollTop < lastScrollTop) {
+          direction = -1;
+        }
 
+        runner.style.setProperty("--dir", direction);
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       });
     </script>
