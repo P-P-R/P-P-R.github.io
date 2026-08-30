@@ -312,13 +312,28 @@ footer {
   color: var(--text-muted);
 }
 
-/* --- Den springande skroll-gubben --- */
+/* --- Den springande roboten med studs-animation --- */
 #scroll-runner {
   position: fixed;
-  top: 10px; /* Håller honom nära toppen */
+  top: 5px; /* Justera höjden så den ligger perfekt i toppen */
   left: 0;
-  font-size: 1.8rem;
-  z-index: 9999; /* Ser till att han alltid är överst */
-  pointer-events: none; /* Så att han inte är i vägen om man försöker klicka på något */
-  transition: transform 0.2s; /* Ger en mjuk vändning när han byter håll */
+  font-size: 1.5rem;
+  z-index: 9999;
+  pointer-events: none;
+  transition: transform 0.15s ease-out;
+}
+
+/* Skapar en studsande löprörelse */
+.runner {
+  display: inline-block;
+  animation: robotRun 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes robotRun {
+  0% {
+    transform: translateY(0) scaleX(var(--dir, 1));
+  }
+  100% {
+    transform: translateY(-4px) scaleX(var(--dir, 1));
+  }
 }

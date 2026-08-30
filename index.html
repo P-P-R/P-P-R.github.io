@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- Den springande gubben -->
-    <div id="scroll-runner">🏃‍♂️</div>
+    <div id="scroll-runner" class="runner">👾</div>
 
     <!-- Sidmeny -->
     <nav>
@@ -227,21 +227,25 @@
       const runner = document.getElementById("scroll-runner");
 
       window.addEventListener("scroll", () => {
-        // Räkna ut hur långt ner vi har skrollat i procent
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const docHeight =
           document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = scrollTop / docHeight;
 
-        // Flytta gubben från vänster till höger (stannar strax innan kanten)
-        runner.style.left = `calc(${scrollPercent * 100}% - ${scrollPercent * 40}px)`;
+        // Skydda mot division med noll om sidan är för kort
+        const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
 
-        // Vänd gubben åt vänster när man skrollar uppåt, höger när man skrollar neråt
-        if (scrollTop > lastScrollTop) {
-          runner.style.transform = "scaleX(1)"; // Springer höger
-        } else {
-          runner.style.transform = "scaleX(-1)"; // Springer vänster
+        // Flytta roboten längs med toppen
+        runner.style.left = `calc(${scrollPercent * 95}% )`;
+
+        // Bestäm riktning (vänster/höger)
+        let direction = 1;
+        if (scrollTop < lastScrollTop) {
+          direction = -1; // Springer bakåt/vänster när man skrollar upp
         }
+
+        // Sätt CSS-variabel för riktningen i animationen
+        runner.style.setProperty("--dir", direction);
+
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
       });
     </script>
