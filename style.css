@@ -70,6 +70,13 @@ nav ul li a:hover {
   color: var(--accent);
 }
 
+/* --- Lyser upp länken för den aktiva sektionen --- */
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--accent); /* Din turkosa färg */
+  transition: color 0.3s ease;
+}
+
 .contact-info {
   margin-top: auto;
   font-size: 0.85rem;

@@ -35,6 +35,39 @@ if (runner) {
   window.addEventListener("resize", updateRunnerPosition);
 }
 
+// --- Lyser upp rätt länk i navbaren när man skrollar (Scrollspy) ---
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = document.querySelectorAll("nav ul li a");
+
+// Bestämmer "träffytan" på skärmen
+const observerOptions = {
+  root: null,
+  rootMargin: "-20% 0px -60% 0px",
+  threshold: 0,
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      // Ta bort active-klassen från alla länkar först
+      navLinks.forEach((link) => link.classList.remove("active"));
+
+      // Hitta länken som matchar sektionens ID och tänd den
+      const activeId = entry.target.getAttribute("id");
+      const activeLink = document.querySelector(
+        `nav ul li a[href="#${activeId}"]`,
+      );
+
+      if (activeLink) {
+        activeLink.classList.add("active");
+      }
+    }
+  });
+}, observerOptions);
+
+// Be observern hålla koll på alla sektioner
+sections.forEach((section) => observer.observe(section));
+
 // --- Hantera den galna robot-animationen vid sidbyte ---
 const pageLinks = document.querySelectorAll(
   'a[href="projects.html"], a[href="index.html"]',
