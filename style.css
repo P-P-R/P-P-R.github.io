@@ -401,3 +401,34 @@ footer {
     margin-bottom: 0;
   }
 }
+
+/* --- Retro Pratbubbla för roboten --- */
+#scroll-runner {
+  pointer-events: auto !important; /* Gör roboten klickbar igen */
+  cursor: pointer;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: 130%; /* Placerar bubblan under roboten */
+  left: 50%;
+  /* scaleX(var(--dir)) motverkar robotens vändning så texten aldrig blir spegelvänd */
+  transform: translateX(-50%) scaleX(var(--dir, 1));
+  background: #1a1b1e;
+  color: var(--accent);
+  padding: 6px 12px;
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  font-family: "Courier New", Courier, monospace; /* Retro-typsnitt */
+  font-size: 0.9rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.speech-bubble.show {
+  opacity: 1;
+  visibility: visible;
+}

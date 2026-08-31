@@ -31,8 +31,38 @@ if (runner) {
   updateRunnerPosition();
 
   // 3. Kör funktionen varje gång användaren skrollar eller ändrar fönsterstorlek
+  // 3. Kör funktionen varje gång användaren skrollar eller ändrar fönsterstorlek
   window.addEventListener("scroll", updateRunnerPosition);
   window.addEventListener("resize", updateRunnerPosition);
+
+  // --- Retro Pratbubbla (Typewriter-effekt) ---
+  const bubble = document.createElement("span");
+  bubble.className = "speech-bubble";
+  runner.appendChild(bubble);
+
+  const message = "I recommend myself!";
+  let isTyping = false;
+
+  runner.addEventListener("click", () => {
+    if (isTyping) return;
+
+    isTyping = true;
+    bubble.classList.add("show");
+    bubble.textContent = "";
+
+    let i = 0;
+    const typeWriter = setInterval(() => {
+      bubble.textContent += message.charAt(i);
+      i++;
+      if (i === message.length) {
+        clearInterval(typeWriter);
+        setTimeout(() => {
+          bubble.classList.remove("show");
+          isTyping = false;
+        }, 2000);
+      }
+    }, 80);
+  });
 }
 
 // --- Lyser upp rätt länk i navbaren när man skrollar (Scrollspy) ---
