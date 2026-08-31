@@ -326,7 +326,7 @@ footer {
 /* Anpassning enbart för mobilskärmar */
 @media (max-width: 900px) {
   #scroll-runner {
-    top: 130px; /* Flyttas ner under menyn på mobilen */
+    top: 160px; /* Flyttas ner under menyn på mobilen */
   }
 }
 
