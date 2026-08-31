@@ -1,25 +1,23 @@
 let lastScrollTop = 0;
 const runner = document.getElementById("scroll-runner");
 
-// Kontrollerar att roboten faktiskt finns på sidan innan skriptet körs
 if (runner) {
-  window.addEventListener("scroll", () => {
+  // 1. Skapa en funktion som räknar ut positionen
+  function updateRunnerPosition() {
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     const docHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = docHeight > 0 ? scrollTop / docHeight : 0;
 
-    // Känner av om skärmen är stor (dator) eller liten (mobil)
     const isMobile = window.innerWidth <= 900;
 
-    // Anpassar springbanan
+    // Sätter rätt startposition direkt
     if (isMobile) {
       runner.style.left = `calc(${scrollPercent * 90}%)`;
     } else {
       runner.style.left = `calc(320px + ${scrollPercent * 70}%)`;
     }
 
-    // Vänder roboten
     let direction = 1;
     if (scrollTop < lastScrollTop) {
       direction = -1;
@@ -27,7 +25,14 @@ if (runner) {
 
     runner.style.setProperty("--dir", direction);
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  });
+  }
+
+  // 2. Kör funktionen direkt när sidan laddas så den inte fastnar i menyn
+  updateRunnerPosition();
+
+  // 3. Kör funktionen varje gång användaren skrollar eller ändrar fönsterstorlek
+  window.addEventListener("scroll", updateRunnerPosition);
+  window.addEventListener("resize", updateRunnerPosition);
 }
 
 // --- Hantera den galna robot-animationen vid sidbyte ---
