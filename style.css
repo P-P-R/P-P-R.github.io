@@ -365,3 +365,24 @@ footer {
     opacity: 0;
   }
 }
+
+/* --- Skrollbar meny för mindre skärmar --- */
+@media (max-width: 900px) {
+  nav ul {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    gap: 15px;
+    /* Döljer rullningslisten för en renare look */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  nav ul::-webkit-scrollbar {
+    display: none;
+  }
+  nav li {
+    margin-bottom: 0;
+  }
+}
