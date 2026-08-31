@@ -29,3 +29,28 @@ if (runner) {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   });
 }
+
+// --- Hantera den galna robot-animationen vid sidbyte ---
+const pageLinks = document.querySelectorAll(
+  'a[href="projects.html"], a[href="index.html"]',
+);
+
+pageLinks.forEach((link) => {
+  link.addEventListener("click", (e) => {
+    // Pausa det vanliga sidbytet
+    e.preventDefault();
+    const targetUrl = link.href;
+
+    if (runner) {
+      // Avbryt den mjuka skroll-övergången
+      runner.style.transition = "none";
+      // Starta den snurrande "warp-speed"-animationen
+      runner.classList.add("warp-speed");
+    }
+
+    // Vänta exakt 1 sekund (1000 millisekunder) och byt sedan sida
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 1000);
+  });
+});
