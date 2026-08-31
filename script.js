@@ -42,15 +42,13 @@ pageLinks.forEach((link) => {
     const targetUrl = link.href;
 
     if (runner) {
-      // Avbryt den mjuka skroll-övergången
-      runner.style.transition = "none";
-      // Starta den snurrande "warp-speed"-animationen
+      // Lägg till klassen som flyttar och animerar roboten
       runner.classList.add("warp-speed");
     }
 
-    // Vänta exakt 1 sekund (1000 millisekunder) och byt sedan sida
+    // Vänta 1.2 sekunder (1200 millisekunder) och byt sedan sida
     setTimeout(() => {
       window.location.href = targetUrl;
-    }, 1000);
+    }, 1200);
   });
 });

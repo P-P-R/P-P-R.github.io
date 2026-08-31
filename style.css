@@ -345,23 +345,31 @@ footer {
   }
 }
 
-/* --- Sjuk övergångsanimation för roboten --- */
+/* --- Sjuk övergångsanimation för roboten (Centrerad) --- */
 .warp-speed {
-  /* Avbryter den vanliga spring-animationen och kör denna istället */
-  animation: crazySpinDrag 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards !important;
+  /* Tvingar roboten till mitten av skärmen */
+  top: 50vh !important;
+  left: 50vw !important;
+  /* Skapar en mjuk flygtur in till mitten innan animationen tar över */
+  transition:
+    top 0.4s ease-out,
+    left 0.4s ease-out !important;
+  /* Kör själva snurren */
+  animation: centerWarp 1.2s ease-in-out forwards !important;
 }
 
-@keyframes crazySpinDrag {
+@keyframes centerWarp {
   0% {
-    transform: scale(1) rotate(0deg);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
-  30% {
-    /* Snurrar upp och blir större */
-    transform: scale(3) rotate(720deg);
+  50% {
+    /* Växer till och spinner i mitten av skärmen */
+    transform: translate(-50%, -50%) scale(4) rotate(720deg);
+    opacity: 1;
   }
   100% {
-    /* Flyger iväg ut ur skärmen */
-    transform: scale(5) rotate(1440deg) translateX(300px);
+    /* Zoomar in extremt nära och försvinner (som att den flyger in i kameran) */
+    transform: translate(-50%, -50%) scale(15) rotate(1440deg);
     opacity: 0;
   }
 }
