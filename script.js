@@ -12,8 +12,9 @@ if (runner) {
     const isMobile = window.innerWidth <= 900;
 
     // Sätter rätt startposition direkt
+    // Anpassar springbanan så roboten aldrig slår i ytterkanterna på små skärmar
     if (isMobile) {
-      runner.style.left = `calc(${scrollPercent * 90}%)`;
+      runner.style.left = `calc(75px + ${scrollPercent * 60}%)`;
     } else {
       runner.style.left = `calc(320px + ${scrollPercent * 70}%)`;
     }
@@ -40,7 +41,8 @@ if (runner) {
   bubble.className = "speech-bubble";
   runner.appendChild(bubble);
 
-  const message = "I recommend myself!";
+  const message =
+    "I am not an AI bot, but dont forget to check out my repositories!";
   let isTyping = false;
 
   runner.addEventListener("click", () => {

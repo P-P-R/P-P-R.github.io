@@ -410,18 +410,22 @@ footer {
 
 .speech-bubble {
   position: absolute;
-  top: 130%; /* Placerar bubblan under roboten */
+  top: 130%;
   left: 50%;
-  /* scaleX(var(--dir)) motverkar robotens vändning så texten aldrig blir spegelvänd */
   transform: translateX(-50%) scaleX(var(--dir, 1));
   background: #1a1b1e;
   color: var(--accent);
   padding: 6px 12px;
   border: 1px solid var(--accent);
   border-radius: 4px;
-  font-family: "Courier New", Courier, monospace; /* Retro-typsnitt */
+  font-family: "Courier New", Courier, monospace;
   font-size: 0.9rem;
-  white-space: nowrap;
+
+  /* --- Nya regler som förhindrar att texten klipps --- */
+  white-space: normal; /* Tillåter texten att hoppa ner en rad */
+  max-width: 120px; /* Tvingar bubblan att hålla sig smal */
+  text-align: center; /* Håller texten snyggt centrerad på flera rader */
+
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s;
